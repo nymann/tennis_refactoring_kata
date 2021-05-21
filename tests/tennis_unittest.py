@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import unittest
 
 from tennis_scoreboard import tennis
@@ -68,18 +66,5 @@ class TestTennis(unittest.TestCase):
             game = play_game(tennis.TennisGame1, p1Points, p2Points, p1Name, p2Name)
             self.assertEqual(score, game.score())
 
-    def test_Score_Game2(self):
-        for testcase in test_cases:
-            (p1Points, p2Points, score, p1Name, p2Name) = testcase
-            game = play_game(tennis.TennisGame2, p1Points, p2Points, p1Name, p2Name)
-            self.assertEqual(score, game.score())
-
-    def test_Score_Game3(self):
-        for testcase in test_cases:
-            (p1Points, p2Points, score, p1Name, p2Name) = testcase
-            game = play_game(tennis.TennisGame3, p1Points, p2Points, p1Name, p2Name)
-            self.assertEqual(score, game.score())
- 
 if __name__ == "__main__":
     unittest.main() 
-        
