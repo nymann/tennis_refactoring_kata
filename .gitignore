@@ -3,3 +3,11 @@ include
 lib
 lib64
 pyvenv.cfg
+tags
+.eggs/
+htmlcov/
+coverage.xml
+.coverage
+*.pyc
+__pycache__
+tennis_scoreboard.egg-info/
