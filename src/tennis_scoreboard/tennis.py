@@ -1,3 +1,5 @@
+from typing import Optional
+
 class TennisGame(object):
     def __init__(self, player1_name: str, player2_name: str):
         self.player1_name = player1_name
@@ -39,8 +41,7 @@ class TennisGame(object):
     def _equal_score(self, points: int) -> str:
         if points > 2:
             return "Deuce"
-        words = ["Love-All", "Fifteen-All", "Thirty-All"]
-        return words[points]
+        return "{word}-All".format(word=self._letter_score(points))
 
     def _letter_score(self, points: int) -> str:
         words = ["Love", "Fifteen", "Thirty", "Forty"]
