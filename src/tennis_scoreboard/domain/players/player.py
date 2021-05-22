@@ -15,3 +15,8 @@ class Player(IPlayer):
     @property
     def name(self) -> str:
         return self._name
+
+    def __eq__(self, player: IPlayer) -> bool:
+        if not isinstance(player, IPlayer):
+            return False
+        return self.name == player.name
