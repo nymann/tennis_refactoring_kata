@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from tennis_scoreboard.tennis import TennisGame
+from tennis_scoreboard.tennis_game import TennisGame
 
 from tests.tennis_unittest import test_cases, play_game
 

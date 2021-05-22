@@ -3,7 +3,7 @@
 import unittest
 from tennis_scoreboard.domain.players.player import Player
 
-from tennis_scoreboard.tennis import TennisGame
+from tennis_scoreboard.tennis_game import TennisGame
 
 test_cases = [
     (0, 0, "Love-All", 'player1', 'player2'),
