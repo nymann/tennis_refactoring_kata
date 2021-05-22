@@ -15,15 +15,11 @@ class TennisGame1:
             self.p2points += 1
     
     def score(self):
-        result = ""
-        tempScore=0
         if (self.p1points==self.p2points):
-            result = self._equal()
+            return self._equal()
         elif (self.p1points>=4 or self.p2points>=4):
-            result = self._get_endgame_result()
-        else:
-            result = self._get_score()
-        return result
+            return self._get_endgame_result()
+        return self._get_score()
 
     def _equal(self):
         return {
@@ -43,17 +39,9 @@ class TennisGame1:
         return "Win for " + self.player2Name
 
     def _get_score(self):
-        result = ""
-        for i in range(1,3):
-            if (i==1):
-                tempScore = self.p1points
-            else:
-                result+="-"
-                tempScore = self.p2points
-            result += {
-                0 : "Love",
-                1 : "Fifteen",
-                2 : "Thirty",
-                3 : "Forty",
-            }[tempScore]
-        return result
+        p1_point_text = self._point_text(self.p1points)
+        p2_point_text = self._point_text(self.p2points)
+        return f"{p1_point_text}-{p2_point_text}"
+
+    def _point_text(self, point: int):
+        return ["Love", "Fifteen", "Thirty", "Forty"][point]
