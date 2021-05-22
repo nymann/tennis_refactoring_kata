@@ -1,6 +1,7 @@
+from tennis_scoreboard.domain.game_states.i_game_state import IGameState
 from tennis_scoreboard.domain.players.i_player import IPlayer
 
-class GameState(object):
+class GameState(IGameState):
     def __init__(self, p1: IPlayer, p2: IPlayer):
         self.p1 = p1
         self.p2 = p2
