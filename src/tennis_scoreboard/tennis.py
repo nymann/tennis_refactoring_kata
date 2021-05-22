@@ -17,7 +17,7 @@ class TennisGame1:
     def score(self):
         if (self.p1points==self.p2points):
             return self._equal()
-        elif (self.p1points>=4 or self.p2points>=4):
+        elif self._is_endgame():
             return self._get_endgame_result()
         return self._get_score()
 
@@ -29,15 +29,21 @@ class TennisGame1:
             return f"{point_text}-All"
         return "Deuce"
 
+    def _is_endgame(self):
+        return self.p1points>=4 or self.p2points>=4
+
     def _get_endgame_result(self):
-        minusResult = self.p1points-self.p2points
-        if (minusResult==1):
-            return "Advantage " + self.player1Name
-        elif (minusResult ==-1):
-            return "Advantage " + self.player2Name
-        elif (minusResult>=2):
-            return  "Win for " + self.player1Name
-        return "Win for " + self.player2Name
+        point_delta = abs(self.p1points-self.p2points)
+        leader = self._get_leader()
+        
+        if (point_delta == 1):
+            return f"Advantage {leader}"
+        return f"Win for {leader}"
+
+    def _get_leader(self):
+        if self.p1points > self.p2points:
+            return self.player1Name
+        return self.player2Name
 
     def _get_score(self):
         p1_point_text = self._point_text(self.p1points)
