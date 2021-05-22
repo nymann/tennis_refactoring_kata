@@ -20,29 +20,36 @@ class GameStateFromTwoPlayersFactory(IGameStateFactory):
         self.p2 = p2
 
     def create_instance(self) -> IGameState:
-        if (self.p1.points == self.p2.points):
-            return self._equal()
-        elif self._is_endgame():
-            return self._get_endgame_result()
-        else:
-            return self._get_score()
-
-    def _equal(self):
-        points = self.p1.points
-
-        if points < 3:
+        if self._is_early_game_lead():
+            return EarlyGameLead(self.p1, self.p2)
+        if self._is_tie():
             return Tie(self.p1, self.p2)
-        return Deuce(self.p1, self.p2)
+        if self._is_deuce():
+            return Deuce(self.p1, self.p2)
+        if self._is_advantage():
+            return Advantage(self.p1, self.p2)
+        if self._is_win():
+            return Win(self.p1, self.p2)
+        raise Exception("Game state not found")
 
     def _is_endgame(self):
-        return self.p1.points >= 4 or self.p2.points >= 4
+        return self.p1.points > 3 or self.p2.points > 3
 
-    def _get_endgame_result(self):
-        point_delta = abs(self.p1.points - self.p2.points)
-        
-        if (point_delta == 1):
-            return Advantage(self.p1, self.p2)
-        return Win(self.p1, self.p2)
+    def _is_win(self):
+        delta = abs(self.p1.points - self.p2.points)
+        return self._is_endgame() and delta > 1
 
-    def _get_score(self):
-        return EarlyGameLead(self.p1, self.p2)
+    def _is_advantage(self):
+        delta = abs(self.p1.points - self.p2.points)
+        return self._is_endgame() and delta == 1
+
+    def _is_tie(self):
+        return self.p1.points < 3 and self.p1.points == self.p2.points
+
+    def _is_deuce(self):
+        points = self.p1.points
+        return self.p1.points == self.p2.points and points > 2
+
+    def _is_early_game_lead(self):
+        delta = abs(self.p1.points - self.p2.points)
+        return not self._is_endgame() and delta > 0
