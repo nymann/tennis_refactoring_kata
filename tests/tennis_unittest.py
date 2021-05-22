@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+from tennis_scoreboard.domain.players.player import Player
 
 from tennis_scoreboard.tennis import TennisGame
 
@@ -52,7 +53,9 @@ test_cases = [
     ]
 
 def play_game(TennisGame, p1Points, p2Points, p1Name, p2Name):
-    game = TennisGame(p1Name, p2Name)
+    p1 = Player(p1Name)
+    p2 = Player(p2Name)
+    game = TennisGame(p1, p2)
     for i in range(max(p1Points, p2Points)):
         if i < p1Points:
             game.won_point(p1Name)

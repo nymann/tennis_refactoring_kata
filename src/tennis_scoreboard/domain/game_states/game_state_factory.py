@@ -36,19 +36,22 @@ class GameStateFromTwoPlayersFactory(IGameStateFactory):
         return self.p1.points > 3 or self.p2.points > 3
 
     def _is_win(self):
-        delta = abs(self.p1.points - self.p2.points)
+        delta = self._get_point_delta()
         return self._is_endgame() and delta > 1
 
     def _is_advantage(self):
-        delta = abs(self.p1.points - self.p2.points)
+        delta = self._get_point_delta()
         return self._is_endgame() and delta == 1
+
+    def _get_point_delta(self) -> int:
+        return abs(self.p1.points - self.p2.points)
 
     def _is_tie(self):
         return self.p1.points < 3 and self.p1.points == self.p2.points
 
     def _is_deuce(self):
         points = self.p1.points
-        return self.p1.points == self.p2.points and points > 2
+        return points == self.p2.points and points > 2
 
     def _is_early_game_lead(self):
         delta = abs(self.p1.points - self.p2.points)

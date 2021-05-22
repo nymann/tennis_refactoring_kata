@@ -1,12 +1,11 @@
 from tennis_scoreboard.domain.game_states.game_state_factory import GameStateFromTwoPlayersFactory
 from tennis_scoreboard.domain.players.i_player import IPlayer
-from tennis_scoreboard.domain.players.player import Player
 
 class TennisGame(object):
 
-    def __init__(self, p1_name, p2_name):
-        self.p1: IPlayer = Player(p1_name)
-        self.p2: IPlayer = Player(p2_name)
+    def __init__(self, p1: IPlayer, p2: IPlayer):
+        self.p1 = p1
+        self.p2 = p2
         
     def won_point(self, player_name):
         if player_name == self.p1.name:
