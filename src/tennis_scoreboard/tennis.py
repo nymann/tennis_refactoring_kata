@@ -22,11 +22,12 @@ class TennisGame1:
         return self._get_score()
 
     def _equal(self):
-        return {
-            0 : "Love-All",
-            1 : "Fifteen-All",
-            2 : "Thirty-All",
-        }.get(self.p1points, "Deuce")
+        points = self.p1points
+
+        if points < 3:
+            point_text = self._point_text(points)
+            return f"{point_text}-All"
+        return "Deuce"
 
     def _get_endgame_result(self):
         minusResult = self.p1points-self.p2points
