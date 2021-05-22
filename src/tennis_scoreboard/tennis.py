@@ -1,42 +1,10 @@
 from tennis_scoreboard.domain.players.i_player import IPlayer
 from tennis_scoreboard.domain.players.player import Player
-
-class GameState(object):
-    def __init__(self, p1: IPlayer, p2: IPlayer):
-        self.p1 = p1
-        self.p2 = p2
-        if self.p1.points > self.p2.points:
-            self.leader = self.p1
-        elif self.p2.points > self.p1.points:
-            self.leader = self.p2
-        else:
-            self.leader = None
-
-    def _point_text(self, point: int):
-        return ["Love", "Fifteen", "Thirty", "Forty"][point]
-
-class EarlyGameLead(GameState):
-    def scoreboard_format(self):
-        p1_point_text = self._point_text(self.p1.points)
-        p2_point_text = self._point_text(self.p2.points)
-        return f"{p1_point_text}-{p2_point_text}"
-
-class Deuce(GameState):
-    def scoreboard_format(self):
-        return "Deuce"
-    
-class Tie(GameState):
-    def scoreboard_format(self):
-        point_text = self._point_text(self.p1.points)
-        return f"{point_text}-All"
-
-class Advantage(GameState):
-    def scoreboard_format(self):
-        return f"Advantage {self.leader.name}"
-
-class Win(GameState):
-    def scoreboard_format(self):
-        return f"Win for {self.leader.name}"
+from tennis_scoreboard.domain.game_states.early_game_lead import EarlyGameLead
+from tennis_scoreboard.domain.game_states.deuce import Deuce
+from tennis_scoreboard.domain.game_states.tie import Tie
+from tennis_scoreboard.domain.game_states.win import Win
+from tennis_scoreboard.domain.game_states.advantage import Advantage
 
 class TennisGame(object):
 
