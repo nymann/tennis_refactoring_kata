@@ -1,6 +1,6 @@
 import unittest
 
-from tennis_scoreboard import tennis
+from tennis_scoreboard.presentation import scoreboard
 
 test_cases = [
     (0, 0, "Love-All", 'player1', 'player2'),
@@ -49,22 +49,22 @@ test_cases = [
     
     ]
 
-def play_game(TennisGame, p1Points, p2Points, p1Name, p2Name):
-    game = TennisGame(p1Name, p2Name)
+def play_game(Scoreboard, p1Points, p2Points, p1Name, p2Name):
+    score = Scoreboard(p1Name, p2Name)
     for i in range(max(p1Points, p2Points)):
         if i < p1Points:
-            game.won_point(p1Name)
+            score.add_point(p1Name)
         if i < p2Points:
-            game.won_point(p2Name)
-    return game
+            score.add_point(p2Name)
+    return score
 
 class TestTennis(unittest.TestCase):
      
     def test_Score_Game1(self):
         for testcase in test_cases:
             (p1Points, p2Points, score, p1Name, p2Name) = testcase
-            game = play_game(tennis.TennisGame, p1Points, p2Points, p1Name, p2Name)
-            self.assertEqual(score, game.score())
+            game = play_game(scoreboard.Scoreboard, p1Points, p2Points, p1Name, p2Name)
+            self.assertEqual(score, str(game))
 
 if __name__ == "__main__":
     unittest.main() 
