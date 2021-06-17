@@ -1,5 +1,7 @@
 from tennis_scoreboard.domain.game_states.game_state_factory import GameStateFromTwoPlayersFactory
+from tennis_scoreboard.domain.game_states.i_game_state import IGameState
 from tennis_scoreboard.domain.players.i_player import IPlayer
+
 
 class TennisGame(object):
 
@@ -14,5 +16,5 @@ class TennisGame(object):
             self.p2.add_point()
     
     def score(self):
-        game_state = GameStateFromTwoPlayersFactory(self.p1, self.p2).create_instance()
-        return game_state.scoreboard_format()
+        game_state: IGameState = GameStateFromTwoPlayersFactory.create_game_state(self.p1, self.p2)
+        return game_state.scoreboard_format(p1=self.p1, p2=self.p2)
