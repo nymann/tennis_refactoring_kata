@@ -8,5 +8,4 @@ class EarlyGameLead(GameState):
         return f"{p1_point_text}-{p2_point_text}"
 
     def is_in_game_state(self, p1: IPlayer, p2: IPlayer) -> bool:
-        delta = abs(p1.points - p2.points)
-        return not self._is_endgame(p1, p2) and delta > 0
+        return not self._is_endgame(p1, p2) and p1.points != p2.points
