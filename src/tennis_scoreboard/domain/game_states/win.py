@@ -1,5 +1,6 @@
-from tennis_scoreboard.domain.players.i_player import IPlayer
 from tennis_scoreboard.domain.game_states.game_state import GameState
+from tennis_scoreboard.domain.players.i_player import IPlayer
+
 
 class Win(GameState):
     def scoreboard_format(self, p1:IPlayer, p2:IPlayer):

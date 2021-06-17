@@ -1,4 +1,7 @@
-from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC
+from abc import abstractmethod
+from abc import abstractproperty
+
 
 class IPlayer(ABC):
 

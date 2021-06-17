@@ -1,5 +1,6 @@
 
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 
 from tennis_scoreboard.domain.players.i_player import IPlayer
 

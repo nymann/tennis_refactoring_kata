@@ -1,7 +1,10 @@
+from abc import ABC
+from abc import abstractmethod
 from typing import Optional
-from abc import ABC, abstractmethod
+
 from tennis_scoreboard.domain.game_states.i_game_state import IGameState
 from tennis_scoreboard.domain.players.i_player import IPlayer
+
 
 class GameState(IGameState, ABC):
     def get_leader(self, p1:IPlayer, p2:IPlayer) -> Optional[IPlayer]:

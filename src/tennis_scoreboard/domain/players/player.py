@@ -1,5 +1,6 @@
 from tennis_scoreboard.domain.players.i_player import IPlayer
 
+
 class Player(IPlayer):
     def __init__(self, name: str, points: int = 0) -> None:
         self._name = name
