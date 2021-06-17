@@ -1,4 +1,4 @@
-from tennis_scoreboard.domain.game_states.game_state_factory import GameStateFromTwoPlayersFactory
+from tennis_scoreboard.domain.game_state_factory import GameStateFromTwoPlayersFactory
 from tennis_scoreboard.domain.game_states.i_game_state import IGameState
 from tennis_scoreboard.domain.players.i_player import IPlayer
 
